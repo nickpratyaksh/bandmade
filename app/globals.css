@@ -2,32 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer components{
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  .sidebar-icon{
+    @apply shadow-lg mx-3 my-3 w-16 h-16 overflow-hidden
+    rounded-3xl hover:rounded-xl hover:scale-110 transition-all duration-200
+    ease-linear cursor-pointer
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+  .sidebar-icon-name{
+    @apply absolute p-2 m-2 left-20 rounded-md top-2
+    text-white bg-green-600 text-base font-bold transition-all 
+    duration-100 scale-0}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
 }
