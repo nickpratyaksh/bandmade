@@ -3,7 +3,6 @@
 import { useContext } from "react";
 import BandSection from "../ui/Componenets/BandsSection";
 import { Context } from "../data/Context";
-import MembersSection from "../ui/Componenets/MembersSection";
 import { darkTheme, lightTheme } from "../ui/themes";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -22,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               )
             );
           }}
-          className={`${current_theme.highlight} h-8 ${current_theme.text} text-center
+          className={`${current_theme.highlight} h-8 text-white text-center
         font-bold flex flex-col justify-center cursor-pointer`}
         >
           WishCord

@@ -1,16 +1,19 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ThemeSetter } from "./ThemeSetter";
 
 let context_values: any;
+let saved_theme: any;
 export const Context = createContext(context_values);
 
 export const ContextProvider = (props: any) => {
-  let saved_theme: any = ThemeSetter();
+  if (typeof window !== "undefined") {
+    saved_theme = ThemeSetter();
+  }
 
   const [current_theme, changeTheme] = useState(saved_theme);
-  const [selected_band, changeBand] = useState("");
+  const [selected_band, changeBand] = useState("nothing");
 
   const context_values = {
     current_theme,

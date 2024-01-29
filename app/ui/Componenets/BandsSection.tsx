@@ -14,7 +14,7 @@ export default function BandSection() {
     >
       {bands_list.map((item, i) => {
         return (
-          <Link href={`/bands/${item.name}`}>
+          <Link href={`/${item.name}`}>
             <div onClick={() => changeBand(item.name)}>
               <Band icon_url={item.icon_url} name={item.name} key={i} />
             </div>

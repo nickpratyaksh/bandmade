@@ -21,7 +21,7 @@ export default function MembersSection({
         band_members.map((item, i) => {
           if (item.band == selected_band)
             return (
-              <Link href={`/bands/${selected_band}/${item.name}`}>
+              <Link href={`/${selected_band}/${item.name}`}>
                 <Member name={item.name} image_url={item.image_url} />
               </Link>
             );

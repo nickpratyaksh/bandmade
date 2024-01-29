@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { darkTheme, lightTheme } from "../ui/themes";
 
@@ -16,5 +16,6 @@ export const ThemeSetter = () => {
       saved_theme = lightTheme;
     }
   }
-  return saved_theme
+
+  return saved_theme;
 };
