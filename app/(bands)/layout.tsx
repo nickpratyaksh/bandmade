@@ -1,12 +1,18 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import BandSection from "../ui/Componenets/BandsSection";
 import { Context } from "../data/Context";
 import { darkTheme, lightTheme } from "../ui/themes";
+import { ThemeSetter } from "../data/ThemeSetter";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   let { current_theme, changeTheme } = useContext(Context);
+
+  if (typeof window !== "undefined") {
+    ThemeSetter();
+  }
+
   return (
     <div className="flex">
       <BandSection />

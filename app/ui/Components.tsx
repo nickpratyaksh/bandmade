@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export function Band({ icon_url, name }: { icon_url: string; name: string }) {
   return (
     <div className="relative group">

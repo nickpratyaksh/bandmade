@@ -1,3 +1,5 @@
+'use client'
+
 import "./globals.css";
 import { ContextProvider } from "./data/Context";
 import { poppins } from "./ui/fonts";

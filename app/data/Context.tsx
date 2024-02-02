@@ -2,17 +2,13 @@
 
 import { createContext, useEffect, useState } from "react";
 import { ThemeSetter } from "./ThemeSetter";
+import { Theme, darkTheme, lightTheme } from "../ui/themes";
 
 let context_values: any;
-let saved_theme: any;
 export const Context = createContext(context_values);
 
 export const ContextProvider = (props: any) => {
-  if (typeof window !== "undefined") {
-    saved_theme = ThemeSetter();
-  }
-
-  const [current_theme, changeTheme] = useState(saved_theme);
+  const [current_theme, changeTheme] = useState(darkTheme);
   const [selected_band, changeBand] = useState("nothing");
 
   const context_values = {

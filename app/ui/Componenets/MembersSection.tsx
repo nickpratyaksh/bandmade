@@ -11,8 +11,7 @@ export default function MembersSection({
 }: {
   selected_band: any;
 }) {
-  let { current_theme, changeBand } = useContext(Context);
-  changeBand(selected_band);
+  let { current_theme } = useContext(Context);
   return (
     <div className={`${current_theme.primary} ${current_theme.text} w-96`}>
       {selected_band == "nothing" ? (
@@ -21,7 +20,7 @@ export default function MembersSection({
         band_members.map((item, i) => {
           if (item.band == selected_band)
             return (
-              <Link href={`/${selected_band}/${item.name}`}>
+              <Link href={`/${selected_band}/${item.name}`} key={i}>
                 <Member name={item.name} image_url={item.image_url} />
               </Link>
             );

@@ -1,8 +1,11 @@
 "use client";
 
+import { useContext, useEffect } from "react";
 import { darkTheme, lightTheme } from "../ui/themes";
+import { Context } from "./Context";
 
 export const ThemeSetter = () => {
+  let { current_theme, changeTheme } = useContext(Context);
   let saved_theme: any;
   const data = localStorage.getItem("saved_theme");
   if (data != null) {
@@ -16,6 +19,7 @@ export const ThemeSetter = () => {
       saved_theme = lightTheme;
     }
   }
-
-  return saved_theme;
+  useEffect(() => {
+    changeTheme(saved_theme);
+  }, []);
 };
