@@ -5,6 +5,8 @@ import BandSection from "../ui/Componenets/BandsSection";
 import { Context } from "../data/Context";
 import { darkTheme, lightTheme } from "../ui/themes";
 import { ThemeSetter } from "../data/ThemeSetter";
+import { usePathname } from "next/navigation";
+import MainPage from "../ui/Componenets/MainPage";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   let { current_theme, changeTheme } = useContext(Context);
@@ -13,6 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     ThemeSetter();
   }
 
+  let path = usePathname();
   return (
     <div className="flex">
       <BandSection />
@@ -32,7 +35,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           WishCord
         </div>
-        <div className="flex h-full">{children}</div>
+        <div className={`flex h-full ${current_theme.secondary_light}`}>
+          {path == "/" ? <MainPage /> : <>{children}</>}
+        </div>
       </div>
     </div>
   );

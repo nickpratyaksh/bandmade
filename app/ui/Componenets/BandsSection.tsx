@@ -1,12 +1,17 @@
-import { bands_list } from "@/app/data/data";
+import { band_members, bands_list } from "@/app/data/data";
 import { useContext } from "react";
 import { Context } from "@/app/data/Context";
 import { Band } from "../Components";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function BandSection() {
   let { current_theme, changeBand } = useContext(Context);
-
+  let bandnameInPath = usePathname().slice(1);
+  bandnameInPath =
+    bandnameInPath.indexOf("/") != -1
+      ? bandnameInPath.substring(0, bandnameInPath.indexOf("/"))
+      : bandnameInPath;
   return (
     <div
       className={`w-fit m-0 h-lvh
@@ -16,7 +21,11 @@ export default function BandSection() {
         return (
           <Link href={`/${item.name}`} key={i}>
             <div onClick={() => changeBand(item.name)}>
-              <Band icon_url={item.icon_url} name={item.name} />
+              <Band
+                icon_url={item.icon_url}
+                name={item.name}
+                nameInPath={bandnameInPath}
+              />
             </div>
           </Link>
         );
