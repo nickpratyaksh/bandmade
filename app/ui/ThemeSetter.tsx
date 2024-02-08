@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import { darkTheme, lightTheme } from "../ui/themes";
-import { Context } from "./Context";
+import { darkTheme, lightTheme } from "./themes";
+import { Context } from "../lib/Context";
 
 export const ThemeSetter = () => {
   let { current_theme, changeTheme } = useContext(Context);

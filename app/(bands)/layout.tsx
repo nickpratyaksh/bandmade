@@ -2,13 +2,20 @@
 
 import { useContext, useEffect } from "react";
 import BandSection from "../ui/Componenets/BandsSection";
-import { Context } from "../data/Context";
+import { Context } from "../lib/Context";
 import { darkTheme, lightTheme } from "../ui/themes";
-import { ThemeSetter } from "../data/ThemeSetter";
-import { usePathname } from "next/navigation";
+import { ThemeSetter } from "../ui/ThemeSetter";
+import { notFound, usePathname } from "next/navigation";
 import MainPage from "../ui/Componenets/MainPage";
+import axios from "axios";
+import { bands_list } from "../lib/data";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  axios.defaults.baseURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://bandmade.vercel.app/";
+
   let { current_theme, changeTheme } = useContext(Context);
 
   if (typeof window !== "undefined") {
@@ -16,6 +23,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }
 
   let path = usePathname();
+  if (
+    path != "/" &&
+    bands_list.find(
+      (band) =>
+        band.name ===
+        path
+          .slice(1)
+          .slice(
+            0,
+            path.lastIndexOf("/") === 0
+              ? path.length
+              : path.lastIndexOf("/") - 1
+          )
+    ) == undefined
+  ) {
+    return notFound();
+  }
+  console.log();
+
   return (
     <div className="flex">
       <BandSection />

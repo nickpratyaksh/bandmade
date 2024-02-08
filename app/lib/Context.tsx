@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
-import { ThemeSetter } from "./ThemeSetter";
+import { ThemeSetter } from "../ui/ThemeSetter";
 import { Theme, darkTheme, lightTheme } from "../ui/themes";
 
 let context_values: any;

@@ -1,4 +1,4 @@
-import { Context } from "@/app/data/Context";
+import { Context } from "@/app/lib/Context";
 import React, { useContext } from "react";
 
 export default function MainPage() {
@@ -9,7 +9,7 @@ export default function MainPage() {
       <ul className="mx-10 my-5 text-3xl list-decimal list-inside">
         <li className="line-through">fix ui</li>
         <li className="line-through">make ui better </li>
-        <li>add database</li>
+        <li className="line-through">add database</li>
         <li>add "add bands" button also give functionality</li>
         <li>add "search bands" also give functionality</li>
         <li>add setting menu drawer</li>
@@ -17,6 +17,8 @@ export default function MainPage() {
         <li>
           fetch band member data from wikipedia using some api if possible
         </li>
+        <li>make mobile responsive</li>
+        <li>add authenticaion</li>
       </ul>
     </div>
   );

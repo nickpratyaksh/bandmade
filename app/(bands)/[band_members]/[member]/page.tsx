@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { band_members } from "@/app/data/data";
+import { band_members } from "@/app/lib/data";
 
 export default function Page() {
   const params = useParams();

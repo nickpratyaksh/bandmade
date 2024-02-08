@@ -1,7 +1,7 @@
 "use client";
 
-import { Context } from "@/app/data/Context";
-import { band_members } from "@/app/data/data";
+import { Context } from "@/app/lib/Context";
+import { band_members } from "@/app/lib/data";
 import React, { useContext } from "react";
 import { Member } from "../Components";
 import Link from "next/link";
