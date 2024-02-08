@@ -59,7 +59,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           className={`${current_theme.highlight} h-8 text-white text-center
         font-bold flex flex-col justify-center cursor-pointer`}
         >
-          WishCord
+          Bandmade
         </div>
         <div className={`flex h-full ${current_theme.secondary_light}`}>
           {path == "/" ? <MainPage /> : <>{children}</>}
