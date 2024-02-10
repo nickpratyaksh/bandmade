@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-export function Band({
+export function BandIcon({
   icon_url,
   name,
   nameInPath,

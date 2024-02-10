@@ -1,6 +1,6 @@
 "use client";
 
-import { Context } from "@/app/lib/Context";
+import { Context } from "@/app/Context";
 import MembersSection from "@/app/ui/Componenets/MembersSection";
 import { useParams } from "next/navigation";
 import { useContext } from "react";

@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import { ContextProvider } from "./lib/Context";
+import { ContextProvider } from "./Context";
 import { poppins } from "./ui/fonts";
 
 export default function RootLayout({

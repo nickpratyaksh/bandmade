@@ -1,14 +1,15 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import BandSection from "../ui/Componenets/BandsSection";
-import { Context } from "../lib/Context";
+import { Context } from "../Context";
 import { darkTheme, lightTheme } from "../ui/themes";
 import { ThemeSetter } from "../ui/ThemeSetter";
 import { notFound, usePathname } from "next/navigation";
 import MainPage from "../ui/Componenets/MainPage";
 import axios from "axios";
-import { bands_list } from "../lib/data";
+import { bands_list } from "../data";
+import BandSectionSkeleton from "../ui/Skeletons/BandsSectionSkeleton";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   axios.defaults.baseURL =
@@ -16,35 +17,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       ? "http://localhost:3000"
       : "https://bandmade.vercel.app/";
 
-  let { current_theme, changeTheme } = useContext(Context);
+  let { current_theme, changeTheme, bands } = useContext(Context);
 
   if (typeof window !== "undefined") {
     ThemeSetter();
   }
-
   let path = usePathname();
-  if (
-    path != "/" &&
-    bands_list.find(
-      (band) =>
-        band.name ===
-        path
-          .slice(1)
-          .slice(
-            0,
-            path.lastIndexOf("/") === 0
-              ? path.length
-              : path.lastIndexOf("/") - 1
-          )
-    ) == undefined
-  ) {
-    return notFound();
-  }
-  console.log();
+  // if (
+  //   path != "/" &&
+  //   bands.find(
+  //     (band) =>
+  //       band.name ===
+  //       path
+  //         .slice(1)
+  //         .slice(
+  //           0,
+  //           path.lastIndexOf("/") === 0
+  //             ? path.length
+  //             : path.lastIndexOf("/") - 1
+  //         )
+  //   ) == undefined
+  // ) {
+  //   return notFound();
+  // }
+  // console.log();
 
   return (
     <div className="flex">
-      <BandSection />
+      <Suspense fallback={<BandSectionSkeleton />}>
+        <BandSection />
+      </Suspense>
+
       <div className="flex flex-col h-screen w-full">
         <div
           onClick={() => {

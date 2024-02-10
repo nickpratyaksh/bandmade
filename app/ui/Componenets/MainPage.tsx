@@ -1,4 +1,4 @@
-import { Context } from "@/app/lib/Context";
+import { Context } from "@/app/Context";
 import React, { useContext } from "react";
 
 export default function MainPage() {

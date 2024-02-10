@@ -1,7 +1,6 @@
-import { band_members, bands_list } from "@/app/lib/data";
-import { useContext } from "react";
-import { Context } from "@/app/lib/Context";
-import { Band } from "../Components";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "@/app/Context";
+import { BandIcon } from "../Components";
 import Link from "next/link";
 import axios from "axios";
 import { usePathname } from "next/navigation";
@@ -9,50 +8,45 @@ import { usePathname } from "next/navigation";
 export default function BandSection() {
   let { current_theme, changeBand } = useContext(Context);
   let bandnameInPath = usePathname().slice(1);
+  const [bands, updateBands] = useState<{ name: string; icon_url: string }[]>(
+    []
+  );
 
   bandnameInPath =
     bandnameInPath.indexOf("/") != -1
       ? bandnameInPath.substring(0, bandnameInPath.indexOf("/"))
       : bandnameInPath;
 
-  const createNewBand = async () => {
+  const getBands = async () => {
     try {
-      const res = await axios.post("/lib/api/bands");
-      console.log(res.data);
+      const res = await axios.get("/api/bands");
+      updateBands(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getBand = async () => {
-    try {
-      const req = await axios.get("/lib/api/bands");
-      console.log(req.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    getBands();
+  }, []);
 
   return (
     <>
       <div
-        className={`w-fit m-0 h-lvh
+        className={`w-24 m-0 h-lvh
               flex flex-col ${current_theme.secondary_dark} ${current_theme.text} shadow-lg`}
       >
-        {bands_list.map((item, i) => {
-          return (
-            <Link href={`/${item.name}`} key={i}>
-              <div onClick={() => changeBand(item.name)}>
-                <Band
-                  icon_url={item.icon_url}
-                  name={item.name}
-                  nameInPath={bandnameInPath}
-                />
-              </div>
-            </Link>
-          );
-        })}
-        {/* <button onClick={getBand}>button</button> */}
+        {bands.map((item: { name: string; icon_url: string }, i: number) => (
+          <Link href={`/${item.name}`} key={i}>
+            <div onClick={() => changeBand(item.name)}>
+              <BandIcon
+                icon_url={item.icon_url}
+                name={item.name}
+                nameInPath={bandnameInPath}
+              />
+            </div>
+          </Link>
+        ))}
       </div>
     </>
   );

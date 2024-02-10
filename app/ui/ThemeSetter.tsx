@@ -2,7 +2,7 @@
 
 import { useContext, useEffect } from "react";
 import { darkTheme, lightTheme } from "./themes";
-import { Context } from "../lib/Context";
+import { Context } from "../Context";
 
 export const ThemeSetter = () => {
   let { current_theme, changeTheme } = useContext(Context);

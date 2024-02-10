@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
-import { ThemeSetter } from "../ui/ThemeSetter";
-import { Theme, darkTheme, lightTheme } from "../ui/themes";
+import { Theme, darkTheme, lightTheme } from "./ui/themes";
+import axios from "axios";
 
 let context_values: any;
 export const Context = createContext(context_values);

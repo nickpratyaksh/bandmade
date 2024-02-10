@@ -5,7 +5,7 @@
 @layer components{
 
   .sidebar-icon{
-    @apply shadow-lg mx-3 my-3 w-16 h-16 overflow-hidden
+    @apply shadow-lg mx-auto my-3 w-16 h-16 overflow-hidden
     rounded-3xl hover:rounded-xl hover:scale-110 transition-all duration-200
     ease-linear cursor-pointer
   }
