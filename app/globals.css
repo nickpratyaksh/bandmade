@@ -11,7 +11,7 @@
   }
 
   .sidebar-icon-name{
-    @apply absolute p-2 m-2 left-20 rounded-md top-2
+    @apply absolute p-2 mx-3 m-1 left-20 rounded-md top-2
     text-white bg-green-600 text-base font-bold transition-all 
     duration-100 scale-0}
 

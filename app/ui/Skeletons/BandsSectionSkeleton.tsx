@@ -10,10 +10,10 @@ export default function BandSectionSkeleton() {
         className={`w-24 m-0 h-lvh
               flex flex-col ${current_theme.secondary_dark} ${current_theme.text} shadow-lg`}
       >
-        <div className="sidebar-icon h-16 w-16 bg-gray-500"></div>
-        <div className="sidebar-icon h-16 w-16 bg-gray-500"></div>
-        <div className="sidebar-icon h-16 w-16 bg-gray-500"></div>
-        <div className="sidebar-icon h-16 w-16 bg-gray-500"></div>
+        <div className="sidebar-icon bg-gray-500"></div>
+        <div className="sidebar-icon bg-gray-500"></div>
+        <div className="sidebar-icon bg-gray-500"></div>
+        <div className="sidebar-icon bg-gray-500"></div>
       </div>
     </>
   );

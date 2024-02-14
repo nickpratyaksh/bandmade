@@ -12,7 +12,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <MembersSection selected_band={params.band_members} />
       <div
-        className={`${current_theme.text} ${current_theme.secondary_light} flex flex-col w-full`}
+        className={`${current_theme.text} ${current_theme.secondary_light} flex flex-col w-full
+        transition-all duration-200 ease-linear`}
       >
         {children}
       </div>

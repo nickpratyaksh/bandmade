@@ -64,7 +64,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           Bandmade
         </div>
-        <div className={`flex h-full ${current_theme.secondary_light}`}>
+        <div
+          className={`flex h-full ${current_theme.secondary_light}
+        transition-all duration-200 ease-linear`}
+        >
           {path == "/" ? <MainPage /> : <>{children}</>}
         </div>
       </div>

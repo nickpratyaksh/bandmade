@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "@/app/Context";
-import { BandIcon } from "../Components";
+import { AddBandButton, BandIcon } from "../Components";
 import Link from "next/link";
 import axios from "axios";
 import { usePathname } from "next/navigation";
+import { BsPlus } from "react-icons/bs";
 
 export default function BandSection() {
   let { current_theme, changeBand } = useContext(Context);
@@ -33,7 +34,7 @@ export default function BandSection() {
   return (
     <>
       <div
-        className={`w-24 m-0 h-lvh
+        className={`w-24 m-0 h-lvh transition-all duration-200 ease-linear
               flex flex-col ${current_theme.secondary_dark} ${current_theme.text} shadow-lg`}
       >
         {bands.map((item: { name: string; icon_url: string }, i: number) => (
@@ -47,6 +48,9 @@ export default function BandSection() {
             </div>
           </Link>
         ))}
+        <div>
+          <AddBandButton props={current_theme} />
+        </div>
       </div>
     </>
   );

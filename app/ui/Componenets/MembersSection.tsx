@@ -3,7 +3,7 @@
 import { Context } from "@/app/Context";
 import { band_members } from "@/app/data";
 import React, { useContext, useEffect, useState } from "react";
-import { Member } from "../Components";
+import { MemberItem } from "../Components";
 import Link from "next/link";
 import { notFound, usePathname } from "next/navigation";
 import axios from "axios";
@@ -53,7 +53,7 @@ export default function MembersSection({
           ) => {
             return (
               <Link href={`/${selected_band}/${item.name}`} key={i}>
-                <Member
+                <MemberItem
                   name={item.name}
                   image_url={item.image_url}
                   nameInPath={membernameInPath}
