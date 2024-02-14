@@ -5,6 +5,7 @@ require("../../models/Band");
 require("../../models/Member");
 connectDb();
 
+export const dynamic = "force-dynamic";
 export const GET = async () => {
   try {
     const bands = await Band.find().populate("members");

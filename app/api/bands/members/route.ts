@@ -6,6 +6,7 @@ require("../../../models/Band");
 require("../../../models/Member");
 connectDb();
 
+export const dynamic = 'force-dynamic';
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("query");
