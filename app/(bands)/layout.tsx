@@ -1,15 +1,13 @@
 "use client";
 
-import { Suspense, useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import BandSection from "../ui/Componenets/BandsSection";
 import { Context } from "../Context";
 import { darkTheme, lightTheme } from "../ui/themes";
 import { ThemeSetter } from "../ui/ThemeSetter";
-import { notFound, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import MainPage from "../ui/Componenets/MainPage";
 import axios from "axios";
-import { bands_list } from "../data";
-import BandSectionSkeleton from "../ui/Skeletons/BandsSectionSkeleton";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   axios.defaults.baseURL =
@@ -44,9 +42,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex">
-      <Suspense fallback={<BandSectionSkeleton />}>
-        <BandSection />
-      </Suspense>
+      <BandSection />
 
       <div className="flex flex-col h-screen w-full">
         <div

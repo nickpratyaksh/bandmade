@@ -1,34 +1,30 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "@/app/Context";
 import { AddBandButton, BandIcon } from "../Components";
 import Link from "next/link";
-import axios from "axios";
 import { usePathname } from "next/navigation";
-import { BsPlus } from "react-icons/bs";
+import { getBands } from "@/app/api/actions";
 
 export default function BandSection() {
-  let { current_theme, changeBand } = useContext(Context);
+  let { current_theme, changeBand, bands, updateBands } = useContext(Context);
   let bandnameInPath = usePathname().slice(1);
-  const [bands, updateBands] = useState<{ name: string; icon_url: string }[]>(
-    []
-  );
 
   bandnameInPath =
     bandnameInPath.indexOf("/") != -1
       ? bandnameInPath.substring(0, bandnameInPath.indexOf("/"))
       : bandnameInPath;
 
-  const getBands = async () => {
+  const getBandsData = async () => {
     try {
-      const res = await axios.get("/api/bands");
-      updateBands(res.data);
+      const res = await getBands();
+      updateBands(JSON.parse(res));
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getBands();
+    getBandsData();
   }, []);
 
   return (

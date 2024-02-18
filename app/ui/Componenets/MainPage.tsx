@@ -10,8 +10,10 @@ export default function MainPage() {
         <li className="line-through">fix ui</li>
         <li className="line-through">make ui better </li>
         <li className="line-through">add database</li>
-        <li>add "add bands" button also give functionality</li>
-        <li>add "search bands" also give functionality</li>
+        <li className="line-through">
+          add "add bands" button also give functionality
+        </li>
+        <li>add "search bands" also give functionality |will do later|</li>
         <li>add setting menu drawer</li>
         <li>add theme switcher</li>
         <li>

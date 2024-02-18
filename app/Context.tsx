@@ -10,12 +10,17 @@ export const Context = createContext(context_values);
 export const ContextProvider = (props: any) => {
   const [current_theme, changeTheme] = useState(darkTheme);
   const [selected_band, changeBand] = useState("nothing");
+  const [bands, updateBands] = useState<{ name: string; icon_url: string }[]>(
+    []
+  );
 
   const context_values = {
     current_theme,
     changeTheme,
     selected_band,
     changeBand,
+    bands,
+    updateBands
   };
 
   return (

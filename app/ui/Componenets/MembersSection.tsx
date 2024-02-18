@@ -1,19 +1,19 @@
 "use client";
 
 import { Context } from "@/app/Context";
-import { band_members } from "@/app/data";
 import React, { useContext, useEffect, useState } from "react";
 import { MemberItem } from "../Components";
 import Link from "next/link";
-import { notFound, usePathname } from "next/navigation";
-import axios from "axios";
+import { usePathname } from "next/navigation";
+import { deleteBand, getMembers } from "@/app/api/actions";
+import { GoPlus } from "react-icons/go";
 
 export default function MembersSection({
   selected_band,
 }: {
   selected_band: any;
 }) {
-  let { current_theme } = useContext(Context);
+  let { current_theme, bands } = useContext(Context);
   let membernameInPath = usePathname();
   const [members, updateMembers] = useState<
     {
@@ -25,17 +25,25 @@ export default function MembersSection({
     .substring(membernameInPath.lastIndexOf("/") + 1)
     .replace("%20", " ");
 
-  const getMembers = async () => {
+  const getMembersData = async () => {
     try {
-      const res = await axios.get(`/api/bands/members?query=${selected_band}`);
-      updateMembers(res.data);
+      if (bands.length == 0) {
+        const res = await getMembers(selected_band);
+        updateMembers(JSON.parse(res));
+      } else {
+        const res = await bands.find(
+          (item: { name: string; image_url: string }) =>
+            item.name == selected_band
+        );
+        updateMembers(res.members);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getMembers();
+    getMembersData();
   }, []);
 
   return (
@@ -49,7 +57,7 @@ export default function MembersSection({
               name: string;
               image_url: string;
             },
-            i
+            i: number
           ) => {
             return (
               <Link href={`/${selected_band}/${item.name}`} key={i}>
@@ -63,6 +71,30 @@ export default function MembersSection({
           }
         )
       )}
+      <div>---------------Setting---------------</div>
+      <div
+        className="flex px-2 py-2 m-2 hover:bg-green-600 rounded-xl transition-all 
+        duration-200 ease-linear cursor-pointer hover:text-white"
+      >
+        <div className="w-10 h-10 rounded-full object-cover border border-dotted">
+          <GoPlus className="w-full h-full" />
+        </div>
+        <div className="flex flex-col justify-center px-5">Add Member</div>
+      </div>
+
+      <div
+        className="flex bg-red-700 px-2 py-2 m-2 hover:bg-red-500 rounded-xl transition-all duration-200 ease-linear 
+          cursor-pointer hover:text-white"
+      >
+        <div
+          onClick={() => {
+            deleteBand(selected_band);
+          }}
+          className="flex flex-col justify-center px-5"
+        >
+          Delete Band
+        </div>
+      </div>
     </div>
   );
 }

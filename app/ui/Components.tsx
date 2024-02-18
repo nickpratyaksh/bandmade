@@ -112,7 +112,10 @@ export function AddBandBox(props: { props: Theme }) {
           rounded-lg ${current_theme.text} focus:outline-none`}
           placeholder="Band Icon Url"
         ></input>
-        <button className={`${current_theme.primary} px-4 py-2 rounded-lg`}>
+        <button
+          onClick={() => window.location.reload()}
+          className={`${current_theme.primary} px-4 py-2 rounded-lg`}
+        >
           Add Band
         </button>
       </div>
