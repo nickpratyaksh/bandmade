@@ -9,6 +9,7 @@ require("../../models/Band");
 require("../../models/Member");
 connectDb();
 
+export const dynamic = "force-dynamic";
 export const GET = async () => {
   try {
     for (let i = 0; i < bands_list.length; i++) {

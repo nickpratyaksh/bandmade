@@ -89,6 +89,7 @@ export default function MembersSection({
         <div
           onClick={() => {
             deleteBand(selected_band);
+            window.location.reload();
           }}
           className="flex flex-col justify-center px-5"
         >
